@@ -44,6 +44,35 @@ const prisma = new PrismaClient();
         });
 
         console.log('Create 3 explorers');
+
+        const mission1 = await prisma.mission.upsert({
+            where: { id: 1 },
+            update: {},
+            create: {
+                name: 'Backend Node',
+                lang: 'JavaScript',
+                missionCommander: 'Carlo',
+                enrollments: 3,
+                hasCertification: true
+
+            }
+        });
+
+        const mission2 = await prisma.mission.upsert({
+            where: { id: 2 },
+            update: {},
+            create: {
+                name: 'Backend Java',
+                lang: 'Java',
+                missionCommander: 'Ferch',
+                enrollments: 0,
+                hasCertification: false
+
+            }
+        });
+
+        console.log('Create 2 missions');
+
     } catch (e) {
         console.error(e);
         process.exit(1);
